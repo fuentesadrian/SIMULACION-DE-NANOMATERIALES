@@ -18,7 +18,7 @@ Año <- function(posicionvector) {
   columna <- ((posicionvector - 1) %% terreno) + 1
   vecinos <-  nido[max(fila - 1, 1) : min(fila + 1 , terreno),
                       max(columna - 1, 1): min(columna + 1, terreno)]
-  return(1 *((sum(vecinos) - nido[fila, columna]) == 3)) #numero a modificar 3 para el cambio de reglas
+  return(1 *((sum(vecinos) - nido[fila, columna]) == 1)) #numero a modificar 3 para el cambio de reglas
    
   }
 print(nido)
