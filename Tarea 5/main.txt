@@ -1,0 +1,263 @@
+\documentclass[a4paper]{article}
+\usepackage[spanish,es-tabla]{babel}  %babel es el paquete de idiomas y antes de eso va el o los idiomas que se reuqieren emplear
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[colorlinks=true, citecolor=blue, final]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\setlength{\arrayrulewidth}{1mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{2.5}
+
+
+\usepackage{url} % UTILIZA EL PAQUETE PARA QUE APAREZCA EL URL AUNQUE AUN NOSE SI DEBO ACTIVARLO TAMBIEN EN REFERENCIAS
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\usepackage{epsfig}
+\hypersetup{colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,}
+
+\usepackage{graphicx}
+\usepackage[sort&compress, numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{ragged2e}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,1,0.82}
+\definecolor{backcolour}{rgb}{1,1,0.97}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+
+\begin{document}  %se utiliza para comenzar lo señalado en el parentesis
+\begin{center} %begin para comenzar  agregamos centrar para poner en medio
+\large \bf Práctica Nº 5   %\large aumenta ligeramente el texto posterior o alarga 
+\\ %\\ Indica brincar espacio. \bf indicara subrayar en negritas las letras despues antes de el termino checar que este en minusculas aveces no entra no se porque pasa un espacio antes y despues de agregar
+Método Monte-Carlo
+\end{center} %end terminacion de lo señalado en corchetes en este caso el centrado
+\textbf{Nombre:}   %\Textbf marca en negritas la frase entre los corchetes
+José Adrián García Fuentes
+\hfill  %hfill genera un espacio horizontal para expandirse a lo largo del documento
+\textbf{Profesor:}   %para que entre el textbf checar que este todo en minusculas
+Satu Elisa Schaeffer \hfill
+\\
+\textbf{Fecha:} 16/Marzo/2021        %\today agrega la fecha en formato de mes dia, año en ingles agregar un usepackage al principio entre llaves el idioma a emplear y entre corchetes babel que es el paquete de idiomas
+\\
+\hrule    %hrule agrega una linea horizontal en el documento
+\medskip
+   %bigskip hace espacio grande entre parrafos medskyp tamaño medio y small skyp uno pequeño  si solo pasas espacios no se despega de una linea y marca error
+ \section{Introducción}
+\justify El método Monte-Carlo es idóneo para situaciones en las cuales algún valor o alguna distribución no se conoce y resulta complicado de determinar de manera analítica \cite{p5}, es un método utilizado para conseguir aproximaciones de expresiones matemáticas y de alto grado para ser evaluadas con exactitud. Consiste en usar un espacio delimitado donde se encuentra la función a evaluar, la idea principal del método es generar números aleatorios dentro de ese espacio y calcular la proporción de puntos que están dentro o fuera, por arriba o por abajo de la función y obtener así una aproximación del área cubierta \cite{montecarlo}.
+
+
+\section{Objetivo}  %\section da enfasis a empezar una nueva seccion o tema
+\begin{itemize}   %begin comenzar itemize es una viñeta se marca como item no es necesario agregar espacio despues de cada item
+    \item Determinar el tamaño de muestra requerido por lugar decimal de precisión para el integral, comparando con Wolfram Alpha para por lo menos desde dos hasta cinco decimales \cite{p5}.
+    \item Representar el resultado como una sola gráfica con el número de decimales correctos contra el tamaño de muestra \cite{p5}.
+
+\end{itemize}
+
+%\\ Indica brincar espacio.
+\section{Metodología}
+\justify
+La metodología empleada se realizó a través de RStudio \cite{RStudio} llevando a cabo los pasos señalados en la \textit{Práctica 5: Método Monte-Carlo} \cite{p5}, se implementa el método Monte-Carlo para aproximar el valor de la integral \eqref{ec1}
+\begin{equation}
+ \int_{a}^{b} f(x) dx
+\label{ec1}
+\
+\end{equation}
+para la función \eqref{ec2}
+\begin{equation}
+f(x) = \frac{1}{exp(x) + exp(-x)}
+\label{ec2}
+\end{equation}
+esta aproximación es posible porque la función \eqref{ec3}
+
+\begin{equation}
+2f(x)/\pi
+\label{ec3}
+\end{equation}
+es una distribución de probabilidad válida igual a 1, observe la ecuación \eqref{ec4}.
+\begin{equation}
+\int_{-\infty}^{\infty} \frac{2}{\pi} f(x) dx= 1
+\label{ec4}
+\end{equation}
+Este hecho permite generar números pseudoaleatorios con la distribución $g(x) = \frac{2f(x)}{\pi}$, así estimar $\int_{a}^{b} g(x) dx$
+, y de ahí normalizar el estimado para que sea $\int_{a}^{b} f(x) dx$.
+\\
+\newpage
+\justify
+ A partir del código en el repositorio de Schaeffer \cite{p3gitdr} se puede realizar el gráfico de distribución de probabilidad como el de la figura \ref{figure1}, el código completo de la metodología empleada se encuentra en el repositorio de GitHub \cite{gitadrian}.
+ 
+ \begin{figure}[h]
+    \centering
+     \includegraphics[width=65mm]{p5m.png}
+    \caption \\Histograma de g$(x)$ comparado con g$(x)$\\
+{
+    \label{figure1}}
+\end{figure}
+
+\section{Resultados}
+\justify
+Se obtuvo el código secuencia de GitHub de Schaeffer \cite{p3gitdr} se adecuaron modificaciones con el fin de determinar el tamaño de muestra requerido por lugar decimal de precisión para el integral, se representaron los resultados en una sola gráfica con el número de decimales correctos contra el tamaño de la muestra (ver figura \ref{figure2}).
+ \begin{figure}[h]
+    \centering
+     \includegraphics[width=65mm]{montecarlo.png}
+    \caption\\ Gráfico precisión de decimales variando tamaño de muestra \cite{1}.
+{
+    \label{figure2}}
+\end{figure}
+\newpage
+\medskip
+\justify A continuación se muestra parte del código del experimento \cite{gitadrian}.
+\medskip
+\begin{lstlisting}
+library(distr)
+library(ggplot2)
+wolf=0.048834
+rate=0.80
+exitos=as.data.frame(matrix(nrow = 5, ncol = 1))
+wolfram=cbind(round(wolf,digits=2),round(wolf,digits=3),round(wolf,digits=4),round(wolf,digits=5),wolf)
+montecarlosf<-function(n) {
+  desde <- 3
+  hasta <- 7
+  f <- function(x) { return(1 / (exp(x) + exp(-x))) }
+  g <- function(x) { return((2 / pi) * f(x)) }
+  suppressMessages(library(distr))
+  generador  <- r(AbscontDistribution(d = g))           
+  valores <- generador(n)
+  mc=sum(valores >= desde & valores <= hasta)
+  integral <- sum(mc) / n
+  resultado=(pi / 2) * integral
+  return(resultado)
+}
+replica <- function() { replicate(reps, montecarlosf(nsample))  }
+for (c in 2:6) {
+  reps=20
+  nsample=5000 
+  paso=1000
+for (i in 1:10) {
+resultado<-round(replica(),digits=c)
+if (as.numeric(length(resultado[resultado == wolfram[1,c-1] ])/reps) <= rate){
+  paso=paso+paso
+  nsample=nsample+paso
+} else {
+  break
+}
+}
+  exitos[c-1,1]=nsample
+}
+ggplot()+geom_line(data=exitos,aes(x=c(2:6),y=exitos$V1))+labs(title="Montecarlo",y="n",x="decimales")
+
+\end{lstlisting}
+
+\justify A medida que aumenta la cantidad de la muestra, el resultado se aproxima mayormente al valor obtenido en Wolfram Alpha ($0.048834$). Por tanto la precisión de los decimales se ve afectada por el tamaño de la muestra, observe como en la figura \ref{figure2} se logra una mayor presición en el número de decimales mientras más grande es la muestra.
+
+
+
+
+\section{Conclusión}
+\justify Si se aumenta el tamaño de $n$ para la estimación de la integral, se obtendrá una mayor precisión con respecto al valor de Wolfram Alpha, este método es una opción viable para replicar el cálculo una cantidad de veces, ya que se trabaja con valores aleatorios, para el caso de muestras grandes se pueden tener aproximaciones en períodos cortos de tiempo con una mayor exactitud. 
+
+\section{Reto 1}
+\justify Implementar la estimación del valor de~$\pi$   de Kurt y determinar la relación matemática entre el número de muestras obtenidas y la precisión obtenida en términos del error absoluto \cite{p5}.
+\justify Para la comprensión es necesario saber como determinar el área de un círculo \eqref{ec5}
+
+\begin{equation}
+A=\pi r^2 
+\label{ec5}
+\end{equation}
+ y el área de un cuadrado que contiene ese círculo \eqref{ec6} 
+\begin{equation}
+A= 4r^2 
+\label{ec6}
+\end{equation}
+ La relación del área del círculo con el área de la plaza es \eqref{ec7}
+ \begin{equation}
+\frac{\pi r^2}{4r^2} 
+\label{ec7}
+\end{equation}
+que se puede reducir a \eqref{ec8}.
+ \begin{equation}
+\frac{\pi}{4} 
+\label{ec8}
+\end{equation}
+Dado  este hecho, si se puede determinar la relación del area del círculo con el área de la plaza \cite{1}.
+
+
+\begin{lstlisting}
+runs <- 100000
+xs <- runif(runs,min=-0.5,max=0.5)
+ys <- runif(runs,min=-0.5,max=0.5)
+in.circle <- xs^2 + ys^2 <= 0.5^2
+mc.pi <- (sum(in.circle)/runs)*4
+plot(xs,ys,pch='.',col=ifelse(in.circle,"blue","grey")
+     ,xlab='',ylab='',asp=1,
+     main=paste("MC Aproximacion de Pi =",mc.pi))
+\end{lstlisting}
+\justify En la figura \ref{figure3} se muestra la estimación del valor de~$\pi$ de kurt
+ \begin{figure}[h]
+    \centering
+     \includegraphics[width=70mm]{aproximacion de pi.png}
+    \caption \\ Estimación del valor de~$\pi$   de Kurt \cite{pimonte}.
+{}
+    \label{figure3}
+\end{figure}
+
+\justify De igual manera que la primera parte de esta práctica, se logra visualizar el mismo patrón a medida que $n$ cambia \cite{kurt}
+
+\section{Reto 2}
+\justify Aplicar un método Monte Carlo para estimar la cantidad de pintura necesaria en un mural, comparando conteos exactos de píxeles de distintos colores con conteos estimados con muestreo aleatorio \cite{p5}.
+
+\begin{lstlisting}
+install.packages("jpeg")
+library(jpeg)
+img <- readJPEG("C:/Users/ADRIAN GARCIA/Desktop/img.jpg")
+img <- as.raster(img)
+tab <- table(img)
+tab <- data.frame(Color = names(tab), Count = as.integer(tab))
+RGB <- t(col2rgb(tab$Color))
+tab <- cbind(tab, RGB)
+tot=sum(tab$Count)
+ratios=(tab$Count/tot)*100
+tab$'cantidadpintura%'<-round(ratios,2)
+\end{lstlisting}
+\justify En la figura \ref{figure4} se muestra una pintura de mural en la que se comparo un total de $288000$ pixeles de los cuales se obtuvo un total de variables de $6$ colores distintos sin embargo se determino la cantidad de pintura en porcentaje para utilizar solo entre dos tipos de colores los datos obtenidos se encuentran dentro del repositorio \cite{gitadrian}
+ \begin{figure}[h]
+    \centering
+     \includegraphics[width=60mm]{img.jpg}
+    \caption \\Pintura Mural \cite{color}\\
+{}
+    \label{figure4}
+\end{figure}
+
+\newpage
+\bibliography{practica5} %\bibliography dentro de los corchetes aparece el comando seccion de referencias  sin embargo para que aparezca tiene que aparecer la seccion \bibliographystyle para dar un estilo del tipo de letra o tipo de acomodo que llevara 
+\bibliographystyle{ieeetr}   %\da un estilo de acomodo dependiendo del comando dentro d corchetes
+\end{document} %indica finalizacion de lo señalado en el parentesis en este caso el documento
+
