@@ -1,3 +1,5 @@
+install.packages("distr")
+install.packages("ggplot2")
 library(distr)
 library(ggplot2)
 
