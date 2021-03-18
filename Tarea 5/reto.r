@@ -1,0 +1,10 @@
+library(jpeg)
+img <- readJPEG("C:/Users/Hp/Desktop/img.jpg")
+img <- as.raster(img)
+tab <- table(img)
+tab <- data.frame(Color = names(tab), Count = as.integer(tab))
+RGB <- t(col2rgb(tab$Color))
+tab <- cbind(tab, RGB)
+tot=sum(tab$Count)
+ratios=(tab$Count/tot)*100
+tab$'cantidadpintura%'<-round(ratios,2)
