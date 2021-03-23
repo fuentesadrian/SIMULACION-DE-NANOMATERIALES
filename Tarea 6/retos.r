@@ -1,7 +1,7 @@
 
 library(gifski)
 
-setwd("~/ADRIANGARCIA/P6.R") 
+setwd("C:/Users/ADRIAN GARCIA/Documents/practica6") 
 
 l <- 1.5
 n <- 50
