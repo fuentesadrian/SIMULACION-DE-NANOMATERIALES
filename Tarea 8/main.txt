@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+\usepackage[spanish,es-tabla]{babel}  %babel es el paquete de idiomas y antes de eso va el o los idiomas que se reuqieren emplear
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[colorlinks=true, citecolor=blue, final]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\setlength{\arrayrulewidth}{1mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{2.5}
+
+\usepackage{url} % UTILIZA EL PAQUETE PARA QUE APAREZCA EL URL AUNQUE AUN NOSE SI DEBO ACTIVARLO TAMBIEN EN REFERENCIAS
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\usepackage{epsfig}
+\hypersetup{colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,}
+
+\usepackage{graphicx}
+\usepackage[sort&compress, numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{ragged2e}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,1,0.82}
+\definecolor{backcolour}{rgb}{1,1,0.97}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\usepackage{media9} % for \includemedia AVOID as about to expire
+% \usepackage{pdfpc-commands} % for \inlineMovie OK BUT needs own .sty file see below
+% \usepackage{xmpmulti} % For \multiinclude OK BUT uses slides in a sequence
+\usepackage{multimedia}
+\usepackage{animate} % for \animategraphics
+\usepackage{eso-pic} % imagen de fondo
+
+\begin{document}  %se utiliza para comenzar lo señalado en el parentesis
+\begin{center} %begin para comenzar  agregamos centrar para poner en medio
+\large \bf Práctica Nº 8   %\large aumenta ligeramente el texto posterior o alarga 
+\\ %\\ Indica brincar espacio. \bf indicara subrayar en negritas las letras despues antes de el termino checar que este en minusculas aveces no entra no se porque pasa un espacio antes y despues de agregar
+Modelo de urnas
+\end{center} %end terminacion de lo señalado en corchetes en este caso el centrado
+\hbox {\textbf{Alumno:}José Adrián García Fuentes}
+ %hfill genera un espacio horizontal para expandirse a lo largo del documento
+\hbox {\textbf{Profesor:} Satu Elisa Schaeffer}   %para que entre el textbf checar que este todo en minusculas
+\hbox {\textbf{Fecha:} 20/abril/2021}        %\today agrega la fecha en formato de mes dia, año en ingles agregar un usepackage al principio entre llaves el idioma a emplear y entre corchetes babel que es el paquete de idiomas
+
+\section{Introducción}
+\justify El modelo de la urna es uno de los elementos de mayor uso en la aplicación de probabilidades estadísticas ya que tiende a ser un concepto que permite la facilidad de comprender gráficamente las distintas formas en las cuales puede aplicarse dicho modelo, un modelo de urnas es aquel que trata de simular un contenedor con elementos para calcular la probabilidad de extraer un elemento de la jornada, alguna característica del elemento, por ejemplo, podemos tener una urna con bolas de un tamaño y bolas de otro donde se desea conocer cuál es la probabilidad de una bola de menor tamaño.
+En la práctica se simula un sistema en donde se abordan los fenómenos de coalescencia y fragmentación de partículas, donde las partículas se unen y se descomponen para formar cúmulos, estos fenómenos son de gran utilidad al realizar análisis en munchas áreas como en física y química. Esto puede servir en la práctica de laboratorio como para lograr predecir qué cantidad de partículas quedaran atrapadas en un filtro de cierta apertura de poro, por ejemplo, supongamos que tenemos alguna solución y deseamos filtrado una determinada partícula una de las características más relevantes de dicha partícula es su tamaño se cuenta con una red que sólo captura las partículas de tamaño que se especifique, mediante el procedimiento solicitado por el uso del modelo de urnas aplicando el principio para este modelo generaríamos un número de enteros distribuido de tal manera que se agrupen al tamaño de los cúmulos originalmente iniciado considerando estas condiciones se procederá a realizar la simulación del sistema. 
+
+\section{Objetivo}
+\begin{itemize}
+\item Graficar el porcentaje que se logra filtrar en cada interación.
+\end{itemize}
+\section{Resultados}
+\justify Para la simulación se toman en cuenta dos parámetros principales, que son el número de partículas $n \in \{16k, 32k, 64k, 128k\}$ y el número de cumulos $k=1000$ \cite{p8}. La metodología empleada se realizó a través de Rstudio \cite{RStudio} llevando a cabo los pasos señalados en la práctica 8: modelo de urna \cite{p8}, a partir del código en el repositorio de Schaeffer \cite{GITSCHAEFFER}, se realizarón modificaciones, los resultados de la experimentación los podemos ver en la figura \ref{Fig.1} donde el eje vertical nos indica el porcentaje de las partículas que se logran filtrar y en el eje horizontal la iteración. 
+\begin{figure}[h!]
+\centering
+\caption{Grafico del porcentaje filtrado en cada interación.}
+\label{Fig.1}
+\end{figure}
+
+\section{Conclusión}
+Como se observa en la figura \ref{Fig.1} el valor más alto de la curva se encuentra en los cúmulos principales y a medida que avanza la interación se observa que el filtrado avanza por tanto los cúmulos más grandes se filtran con mayor facilidad pero tardar en formarse que los cúmulos pequeños.
+\newpage
+\bibliography{t8} %\bibliography dentro de los corchetes aparece el comando seccion de referencias  sin embargo para que aparezca tiene que aparecer la seccion \bibliographystyle para dar un estilo del tipo de letra o tipo de acomodo que llevara 
+\bibliographystyle{ieeetr}   %\da un estilo de acomodo dependiendo del comando dentro d corchetes
+\end{document} %indica finalizacion de lo señalado en el parentesis en este caso el documento
+
