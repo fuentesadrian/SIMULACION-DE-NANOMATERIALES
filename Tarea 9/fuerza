@@ -1,0 +1,23 @@
+function(i) {
+  xi <- p[i,]$x
+  yi <- p[i,]$y
+  ci <- p[i,]$c
+  mi <- p[i,]$m
+  fx <- 0
+  fy <- 0
+  for (j in 1:n) {
+    cj <- p[j,]$c
+    mj <- p[j,]$m
+    dir <- (-1)^(1 + 1 * (ci * cj < 0))
+    dx <- xi - p[j,]$x
+    dy <- yi - p[j,]$y
+    if (dir>0) {
+      factor <- dir * abs(ci - cj) * ((1+mi * (1+mj)^3)^(1/8)) / (sqrt(dx^2 + dy^2) + eps)
+    } else {
+      factor <- dir * abs(ci - cj) / (sqrt(dx^2 + dy^2) + eps)
+    }
+    fx <- fx - dx * factor
+    fy <- fy - dy * factor
+  }
+  return(c(fx, fy))
+}
