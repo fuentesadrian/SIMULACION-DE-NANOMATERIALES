@@ -1,0 +1,13 @@
+#Pruebas estadisticas de comparaci�n de medias
+> t.test(poncentajefrente[,1], poncentajefrente[,2])$p.value
+[1] 3.959976e-06
+> t.test(poncentajefrente[,1], poncentajefrente[,3])$p.value
+[1] 3.450318e-14
+> t.test(poncentajefrente[,1], poncentajefrente[,4])$p.value
+[1] 1.729815e-26
+> t.test(poncentajefrente[,2], poncentajefrente[,3])$p.value
+[1] 2.321364e-05
+> t.test(poncentajefrente[,2], poncentajefrente[,4])$p.value
+[1] 1.711739e-12
+> t.test(poncentajefrente[,3], poncentajefrente[,4])$p.value
+[1] 2.845312e-05
