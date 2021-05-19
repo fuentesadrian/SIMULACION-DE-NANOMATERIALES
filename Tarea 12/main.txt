@@ -1,0 +1,241 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[colorlinks=true, citecolor=blue, final]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:#1 png:\OutputFile}
+\AppendGraphicsExtensions{.gif}
+\usepackage{amssymb}
+\setlength{\arrayrulewidth}{1mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{2.5}
+
+\usepackage{url} % UTILIZA EL PAQUETE PARA QUE APAREZCA EL URL AUNQUE AUN NOSE SI DEBO ACTIVARLO TAMBIEN EN REFERENCIAS
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\usepackage{epsfig}
+\hypersetup{colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,}
+
+\usepackage{graphicx}
+\usepackage[sort&compress, numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{ragged2e}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,1,0.82}
+\definecolor{backcolour}{rgb}{1,1,0.97}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=0.4pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{xcolor}
+\newcommand{\celda}[1]{
+	\begin{minipage}{2cm}
+		\vspace{2mm}
+		#1
+		\vspace{2mm}
+	\end{minipage}
+}
+\definecolor{azul}{rgb}{0.36, 0.54, 0.66}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\author{Jorge Vicente Niño Mocarro}
+\begin{document}
+	
+	\begin{figure}[H]
+		\raggedright
+		\includegraphics[scale=0.5]{uanl (1).png} \hfill \includegraphics[scale=0.275]{fime.png}
+	\end{figure}
+
+	\vspace{6mm}
+	
+	%ESTE CENTER ES EXCLUSIVO PARA EL TITULO DEL PAPER, AUTOR Y UNIVER.
+	\begin{center}
+		{\Large \textbf{Práctica 12: red neuronal}}\\
+		\vspace{2mm}
+		\textit{ Alumno: José Adrian Garcia Fuentes}\\
+		\textit{Profesor: Satu Elisa Schaeffer}\\
+		\vspace{2.5mm}
+		\textit{Universidad Autónoma de Nuevo León. Facultad de Ingeniería Mecánica y Eléctrica.}\\
+		\vspace{1mm}
+		\textit {16/mayo/2021 }
+		
+		
+	\end{center}
+
+	\begin{center}
+		\textcolor{azul}{\rule{150mm}{0.8mm}}
+	\end{center}
+
+      %ESTE ABSTRACT ES PARA EL RESUMEN PROPIAMENTE DICHO Y PARA LAS PALABRAS CLAVES (KEYWORDS) ,NOTA:el comando \par sirve para iniciar el nuevo parrafo con sangría.
+	\begin{abstract}
+	Reconocer dígitos de imágenes pequeñas en blanco y negro con una red neuronal, utilizando un perceptrón que separe las entradas verdaderas y falsas.
+		\vspace{2mm}\par
+		\underline{\textbf{Palabras Claves:}} \hspace{2mm} \textit{Red neuronal.}
+	\end{abstract}
+	
+	\begin{center}
+		\textcolor{azul}{\rule{150mm}{0.8mm}}
+	\end{center}
+	
+	\vspace{5mm}
+
+	\begin{multicols}{2}
+		\section{Introducción} \label{Intro}
+		La última práctica es una demostración básica de aprendizaje a máquina: se requiere reconocer dígitos de imágenes pequeñas en blanco y negro con una red neuronal. El elemento básico de una red neuronal es un perceptrón que esencialmente es un hiperplano (una línea si nos limitamos a dos dimensiones) que busca colocarse en la frontera que separa las entradas verdaderas y las entradas falsas. La dimensión \textit{d} del perceptrón es el largo del vector \textit{x} que toma como entrada, y su estado interno se representa con otro vector \textit{w} que contiene sus pesos \cite{p10}. 
+
+		\section{Objetivo} \label{antece}
+		Estudia de manera sistemática el desempeño de la red neuronal en términos de su puntaje F para los diez dígitos en función de las tres probabilidades asignadas a la generación de los dígitos, variando a las tres en un experimento factorial adecuado \cite{p10}. 
+	
+	\section{Metodologia}	
+	La metodología empleada se realizó a través de Rstudio \cite{RStudio} llevando a cabo los pasos señalados en la \textit{Práctica 12: red neuronal} \cite{p10}, a partir del código en el repositorio de Schaeffer \cite{p3gitdr}, se realizaron modificaciones. El código completo de la metodología empleada se encuentra en el repositorio de GitHub \cite{gitadrian}.
+
+	\section{Resultados}
+	A continuación se muestran los cambios al codigo, en la figura \ref{fig1} se muestra un dígito en blanco y negro.
+	\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{base 3x5.jpeg} 
+				\caption{Dígito blanco y negro $3$ x $5$.}
+				\label{fig1}
+\end{figure}
+\begin{lstlisting}
+n_prob <- c(0.995, 0.98, 0.95, 0.30)
+g_prob <- c(0.920, 0.90, 0.85, 0.50)
+b_prob <- c(0.002, 0.01, 0.05, 0.80)
+
+prom_fscore <- c()
+
+for (iter in 1:4) {
+  modelos <- read.csv("digits.txt", sep=" ", header=FALSE, stringsAsFactors=F)
+  modelos[modelos=='n'] <- n_prob[iter]
+  modelos[modelos=='g'] <- g_prob[iter]
+  modelos[modelos=='b'] <- b_prob[iter]
+\end{lstlisting}
+
+\begin{lstlisting}
+precision <- diag(contadores) / rowSums(contadores)
+  recall <- diag(contadores) / colSums(contadores)[1:(ncol(contadores)-1)]
+  fscore <- (2 * precision * recall) / (precision + recall)
+  prom_fscore[iter] <- mean(fscore)
+}
+prom_fscore
+\end{lstlisting}
+\section{Reto 1}
+Extiende y entrena la red neuronal para que reconozca además por lo menos doce símbolos ASCII adicionales, aumentando la resolución de las imágenes a $5$ x $7$ de lo original de $3$ x $5$ (modificando las plantillas de los dígitos acorde a este cambio).
+
+Se modificó el codigo de la tarea base cambiando las dimensiones de la resolución de la imagen a $7$ x $5$ (ver figura \ref{fig2}, \ref{fig3}, \ref{fig4}).
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{reto1.jpeg} 
+				\caption{Dígito blanco y negro $7$ x $5$.}
+				\label{fig2}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{reto11.jpeg} 
+				\caption{Dígito blanco y negro $7$ x $5$.}
+				\label{fig3}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{reto111.jpeg} 
+				\caption{Dígito blanco y negro $7$ x $5$.}
+				\label{fig4}
+\end{figure}
+\begin{lstlisting}
+  modelos <- read.csv("digitos2.csv", sep=",", header=FALSE, stringsAsFactors=F)
+  modelos[1,1] <- "n"
+  
+  modelos[modelos=='n'] <- 0.995
+  modelos[modelos=='g'] <- 0.92
+  modelos[modelos=='b'] <- 0.002
+  
+  r <- 7
+  c <- 5
+  dim <- r * c
+  
+  tasa <- 0.15
+  tranqui <- 0.99
+  
+  tope <- 11
+  \end{lstlisting}
+	\section{Reto 2}
+\justify Agrega ruido \textit{sal-y-pimienta} en las entradas para una combinación ngb con la cual la red desempeña bien; este tipo de ruido se genera cambiando con una probabilidad 
+ los pixeles a blanco o negro (uniformemente al azar entre las dos opciones). Estudia el efecto de 
+ en el desempeño de la red (no importa si se hace esto con la red de la tarea base o la red extendida del primer reto).
+ 
+ A partir del código del primer reto se añadió el siguiente código para estudiar el efecto de desempeño en la red y se obtuvo el gráfico \textit{fscore} de \textit{pr} (ver figura \ref{figa} un ejemplo de dígito se muestra en la figura \ref{fig: Figura7}
+\begin{lstlisting} 
+ pr <- seq(0,.5,.025)
+prom_fscore <- c()
+iter = 1
+
+for (prob in pr) {
+\end{lstlisting}
+\begin{lstlisting}
+s <- (runif(dim) > prob) 
+    for (m in 1:length(s)) {
+      if (s[m] == FALSE) {pixeles[m]<- !pixeles[m]}
+    }
+    correcto <- binario(d, n)
+\end{lstlisting}
+\begin{lstlisting}
+iter = iter + 1
+}
+prom_fscore
+plot(pr, prom_fscore, type= "l")
+\end{lstlisting}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{reto22.jpeg} 
+				\caption{Gráfico f score.}
+				\label{figa}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{reto2.jpeg} 
+				\caption{Dígito blanco y negro $3$ x $5$.}
+				\label{fig: Figura7}
+\end{figure}
+		\section{Conclusión}
+	El valor \textit{Fscore} depende de la probabilidad con la que aparezcan los colores y estos pixeles dominantes predominan los colores negro y blanco.
+\bibliography{T12}
+	\end{multicols}
+\bibliographystyle{ieeetr}
+	
+\end{document}
