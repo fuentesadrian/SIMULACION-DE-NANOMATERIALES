@@ -72,7 +72,22 @@ La metodología empleada se realizó a través de RStudio\cite{RStudio} llevando
 \section{Resultados}
 \justify
 Se obtuvo el código secuencia para determinar si un número es primo o no primo, a partir de este experimento se determino el tiempo que tardaba en detectar si era primo o no primo. A continuación se muestra parte del código del experimento \cite{gitadrian} en el cual se señala el número de repeticiones y parte de la función dada solicitando números de manera pseudoaleatoria que determinaran la posición final de nuestro punto, dicho código fue modificado de el código del docente \cite{p3gitdr}. 
+
+ \begin{table}[h!]
+     \centering
+          \caption{Registro de tiempos}
+     \begin{tabular}{c|c|c|c}
+           min & max & promedio & media  \\
+           0.20 & 0.72 & 0.50 & 0.48  \\
+           0.1 & 0.21 & 0.19 & 0.16  \\
+           0.03 & 0.20 & 0.10 & 0.12 \\
+     \end{tabular}
+     \label{tab:my_label}
+ \end{table}
+ 
 \begin{lstlisting}
+library(parallel)
+detectCores(-1)
 primo <- function(n) {
   if (n < 4) {
     return(TRUE)
@@ -90,7 +105,57 @@ primo <- function(n) {
   {print(noprimo)}
 }
 \end{lstlisting}
-\section{conclusión}
+\justify A continuación en la Fig \ref{practica3.png} se muestra un diagrama caja bigote de el tiempo de interacción al correr el experimento. 
+\begin{figure}[h]
+    \centering
+     \includegraphics[width=60mm]{practica3.png}
+    \caption\\Diagrama caja bigote{\label{practica3.png}
+    \label{practica3.png}}
+\end{figure}
+ 
+\section{Reto 1}
+ Modificar la tarea por realizar a que se encuentren todos los divisores del número (es decir, todos los enteros mayores a uno y menores al número mismo que lo dividen exactamente y examinar si las conclusiones cambian.
+ 
+\begin{lstlisting}
+divisor<- function (n) {
+       div<-numeric()
+       for (i in 1:ceiling(sqrt(n))){
+           if ((n %% i)= 0){
+              div<-c(div,i)
+              div<-c(div,n/i)
+              }
+        }
+        return(sort(unique(div)))
+    }
+\end{lstlisting}
+
+ \section{Reto 2}
+ Modificar el primer reto a que encuentre solamente los factores y sus multiplicidades, es decir, que encuentre para n aquellos números primos $1 < p < n$ y sus potencias para que el producto de los factores con esas potencias de n. Nuevamente hay que examinar si este cambio afectó las conclusiones del experimento de la tarea.
+ 
+ \begin{lstlisting}
+fact_primos<-function(n){
+    div<-numeric()
+    if(n==1){
+        return(1)
+    }
+    while(n%%2 == 0){
+    div<-c(div,2)
+    n = n/2
+    }
+    for(i in seq(3, max(3, ceiling(sqrt(n))), 2)){
+        while(n%%i==0){
+            div<-c(div,i)
+            n=n/i
+        }
+    }
+    if(n>2){
+        div<-c(div,n)
+        }
+    return(table(div))
+}
+ \end{lstlisting}
+
+\section{Conclusión}
 \justify En conclusión el tiempo en que tarda un experimento en correr una secuencia variando el numero de nucleos de un cpu puede ser mas corto de pendiendo de que tan largo sea el experimento
 
 \clearpage
