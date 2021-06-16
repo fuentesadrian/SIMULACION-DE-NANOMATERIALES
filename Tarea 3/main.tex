@@ -1,6 +1,27 @@
-\documentclass[a4paper]{article}
-\usepackage[spanish]{babel}  %babel es el paquete de idiomas y antes de eso va el o los idiomas que se reuqieren emplear
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
 \usepackage[colorlinks=true, citecolor=blue, final]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{soul}
+\usepackage{color}
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:#1 png:\OutputFile}
+\AppendGraphicsExtensions{.gif}
+\usepackage{amssymb}
+\setlength{\arrayrulewidth}{1mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{2.5}
 \usepackage{url} % UTILIZA EL PAQUETE PARA QUE APAREZCA EL URL AUNQUE AUN NOSE SI DEBO ACTIVARLO TAMBIEN EN REFERENCIAS
 \hypersetup{
     colorlinks=true,
@@ -8,6 +29,11 @@
     filecolor=blue,      
     urlcolor=blue,
 }
+\usepackage{epsfig}
+\hypersetup{colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,}
 \usepackage{graphicx}
 \usepackage[sort&compress, numbers]{natbib}
 \usepackage{xcolor}
@@ -29,137 +55,107 @@
     captionpos=b,                    
     keepspaces=true,                 
     numbers=left,                    
-    numbersep=5pt,                  
+    numbersep=0.4pt,                  
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
     tabsize=2
 }
 \lstset{style=mystyle}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{xcolor}
+\newcommand{\celda}[1]{
+	\begin{minipage}{2cm}
+		\vspace{2mm}
+		#1
+		\vspace{2mm}
+	\end{minipage}
+}
+\definecolor{azul}{rgb}{0.36, 0.54, 0.66}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\author{José Adrian Garcia fUENTES}
+\begin{document}
+	\begin{figure}[H]
+		\raggedright
+		\includegraphics[scale=0.5]{uanl (1).png} \hfill \includegraphics[scale=0.275]{fime.png}
+	\end{figure}
 
+	\vspace{6mm}
+	
+	%ESTE CENTER ES EXCLUSIVO PARA EL TITULO DEL PAPER, AUTOR Y UNIVER.
+	\begin{center}
+		{\Large \textbf{Práctica 3: Teoría de colas}}\\
+		\vspace{2mm}
+		\textit{ Alumno: José Adrian Garcia Fuentes}\\
+		\textit{Profesor: Satu Elisa Schaeffer}\\
+		\vspace{2.5mm}
+		\textit{Universidad Autónoma de Nuevo León\hl{,} Facultad de Ingeniería Mecánica y Eléctrica\hl{ }}\\
+		\vspace{1mm}
+		\textit {\today}
+		
+		
+	\end{center}
+	\begin{center}
+		\textcolor{azul}{\rule{150mm}{0.8mm}}
+	\end{center}
+	
+	\vspace{5mm}
 
-\begin{document}  %se utiliza para comenzar lo señalado en el parentesis
-\begin{center} %begin para comenzar  agregamos centrar para poner en medio
-\large \bf Práctica Nº 3   %\large aumenta ligeramente el texto posterior o alarga 
-\\ %\\ Indica brincar espacio. \bf indicara subrayar en negritas las letras despues antes de el termino checar que este en minusculas aveces no entra no se porque pasa un espacio antes y despues de agregar
-Teoría de colas
-\end{center} %end terminacion de lo señalado en corchetes en este caso el centrado
-\textbf{Nombre:}   %\Textbf marca en negritas la frase entre los corchetes
-José Adrián García Fuentes
-\hfill  %hfill genera un espacio horizontal para expandirse a lo largo del documento
-\textbf{Profesor:}   %para que entre el textbf checar que este todo en minusculas
-Satu Elisa Schaeffer \hfill
-\\
-\textbf{Fecha:} 02/Marzo/2021        %\today agrega la fecha en formato de mes dia, año en ingles agregar un usepackage al principio entre llaves el idioma a emplear y entre corchetes babel que es el paquete de idiomas
-\\
-\hrule    %hrule agrega una linea horizontal en el documento
-\medskip
-   %bigskip hace espacio grande entre parrafos medskyp tamaño medio y small skyp uno pequeño  si solo pasas espacios no se despega de una linea y marca error
- \section{Introducción}
-\justify La teoría de colas es un área de las matemáticas que estudia el comportamiento de líneas de espera. Los trabajos que están esperando ejecución en un cluster esencialmente forman una línea de espera \cite{p3}.
-\section{Objetivo}  %\section da enfasis a empezar una nueva seccion o tema
-\begin{itemize}   %begin comenzar itemize es una viñeta se marca como item no es necesario agregar espacio despues de cada item
-    \item Examinar cómo las diferencias en los tiempos de ejecución de los diferentes ordenamientos cambian cuando se varía el número de núcleos asignados al cluster, utilizando como datos de entrada un vector que contiene primos grandes, descargados de \url{https://primes.utm.edu/lists/small/millions/} y no-primos (creados a partir de ellos) con por lo menos nueve dígitos, aplicando pruebas estadísticas adecuadas y visualización científica clara e informativa \cite{p3}. 
+	\begin{multicols}{2}
+		\section{Introducción} 
+	La teoría de colas es un área de las matemáticas que estudia el comportamiento de líneas de espera. Los trabajos que están esperando ejecución en un \hl{cl\'uster} esencialmente forman una línea de espera \cite{p3}.
 
-\end{itemize}
+ 
 
-%\\ Indica brincar espacio.
+		\section{Objetivo} 
+		Examinar cómo las diferencias en los tiempos de ejecución de los diferentes ordenamientos cambian cuando se varía el número de núcleos asignados al \hl{cl\'uster}, utilizando como datos de entrada un vector que contiene primos grandes, descargados de \url{https://primes.utm.edu/lists/small/millions/} y no primos (creados a partir de ellos)\hl{.} Con por lo menos nueve dígitos, aplicando pruebas estadísticas adecuadas y visualización científica clara e informativa \cite{p3}. 
+
 \section{Metodología}
-\justify
-La metodología empleada se realizó a través de RStudio\cite{RStudio} llevando a cabo los pasos señalados en la \textit{Práctica 3: teoría de colas} \cite{p3}, se examinaron las diferencias en tiempos de ejecución de los diferentes ordenamientos cuando se varia el numero de nucleos asignados al cluster, utilizando como datos de entrada del vector utilizando primos grandes, el código completo de la metodología empleada se encuentra en el repositorio \cite{gitadrian} del autor.
+La metodología empleada se realizó a través de RStudio\cite{RStudio} llevando a cabo los pasos señalados en la \textit{Práctica 3: teoría de colas} \cite{p3}.\hl{ }
 
+	
+	\section{Resultados}
+	Se obtuvo el código secuencia para determinar si un número es primo o no primo, a partir de este experimento se \hl{determin\'o} el tiempo que tardaba en detectar si era primo o no primo. \hl{El c\'odigo del experimento se encuentra en el repositorio de Garcia} \cite{gitadrian} en el cual se señala el número de repeticiones y parte de la función dada solicitando números de manera pseudoaleatoria, \hl{dicho c\'odigo fue modificado del c\'odigo del Schaeffer} \cite{p3gitdr}. 
+	
+	En la figura \ref{fig2} \hl{se muestra un diagrama de viol\'in de los tiempos de ejecuci\'on de cada orden (original, invertido y aleatorio) respectivamente, el tiempo en segundos es mayor para el orden original y menor para el invertido.}
+	\vspace{1mm}
+	
+	\hl{En el cuadro} \ref{tb: Tabla1} \hl{se muestran los datos estad\'isticos de cada orden, se muestran valores muy similares en medias de los tiempos de ejecuci\'on, como tambi\'en en el tiempo m\'inimo  y una ligera diferencia en el tiempo m\'aximo.}
 
-\section{Resultados}
-\justify
-Se obtuvo el código secuencia para determinar si un número es primo o no primo, a partir de este experimento se determino el tiempo que tardaba en detectar si era primo o no primo. A continuación se muestra parte del código del experimento \cite{gitadrian} en el cual se señala el número de repeticiones y parte de la función dada solicitando números de manera pseudoaleatoria que determinaran la posición final de nuestro punto, dicho código fue modificado de el código del docente \cite{p3gitdr}. 
-
- \begin{table}[h!]
-     \centering
-          \caption{Registro de tiempos}
-     \begin{tabular}{c|c|c|c}
-           min & max & promedio & media  \\
-           0.20 & 0.72 & 0.50 & 0.48  \\
-           0.1 & 0.21 & 0.19 & 0.16  \\
-           0.03 & 0.20 & 0.10 & 0.12 \\
-     \end{tabular}
-     \label{tab:my_label}
- \end{table}
- 
-\begin{lstlisting}
-library(parallel)
-detectCores(-1)
-primo <- function(n) {
-  if (n < 4) {
-    return(TRUE)
-  }
-  if (n %% 2 == 0) {
-    return(FALSE)
-  }
-  for (i in seq(3, max(3, ceiling(sqrt(n))), 2)) {
-    if (n %% i == 0) {
-      return(FALSE)
-    }
-  }
-  return(TRUE)
-  for (noprimo in (valoresprimos[1] + 1):(valoresprimos[2]-1))
-  {print(noprimo)}
-}
-\end{lstlisting}
-\justify A continuación en la Fig \ref{practica3.png} se muestra un diagrama caja bigote de el tiempo de interacción al correr el experimento. 
-\begin{figure}[h]
-    \centering
-     \includegraphics[width=60mm]{practica3.png}
-    \caption\\Diagrama caja bigote{\label{practica3.png}
-    \label{practica3.png}}
+	
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.1]{3corregida.tif.jpg} 
+				\caption{Tiempos de ejecución para cada orden.}
+				\label{fig2}
 \end{figure}
- 
-\section{Reto 1}
- Modificar la tarea por realizar a que se encuentren todos los divisores del número (es decir, todos los enteros mayores a uno y menores al número mismo que lo dividen exactamente y examinar si las conclusiones cambian.
- 
-\begin{lstlisting}
-divisor<- function (n) {
-       div<-numeric()
-       for (i in 1:ceiling(sqrt(n))){
-           if ((n %% i)= 0){
-              div<-c(div,i)
-              div<-c(div,n/i)
-              }
-        }
-        return(sort(unique(div)))
-    }
-\end{lstlisting}
 
- \section{Reto 2}
- Modificar el primer reto a que encuentre solamente los factores y sus multiplicidades, es decir, que encuentre para n aquellos números primos $1 < p < n$ y sus potencias para que el producto de los factores con esas potencias de n. Nuevamente hay que examinar si este cambio afectó las conclusiones del experimento de la tarea.
- 
- \begin{lstlisting}
-fact_primos<-function(n){
-    div<-numeric()
-    if(n==1){
-        return(1)
-    }
-    while(n%%2 == 0){
-    div<-c(div,2)
-    n = n/2
-    }
-    for(i in seq(3, max(3, ceiling(sqrt(n))), 2)){
-        while(n%%i==0){
-            div<-c(div,i)
-            n=n/i
-        }
-    }
-    if(n>2){
-        div<-c(div,n)
-        }
-    return(table(div))
-}
- \end{lstlisting}
 
-\section{Conclusión}
-\justify En conclusión el tiempo en que tarda un experimento en correr una secuencia variando el numero de nucleos de un cpu puede ser mas corto de pendiendo de que tan largo sea el experimento
+		\section{Conclusión}
+		En conclusión el tiempo en que tarda un experimento en correr una secuencia variando el \hl{n\'umero} de \hl{n\'ucleos} de un \hl{CPU} puede ser \hl{m\'as} corto \hl{dependiendo} de que tan largo sea el experimento \hl{para el caso de los tiempos de ejecuci\'on de la figura} \ref{fig2} \hl{el orden con mayor tiempo fue el original con un m\'aximo de veinte segundos para el caso del orden aleatorio un m\'aximo de diecis\'eis segundos, el c\'odigo se encuentra en el repositorio de Garcia} \cite{gitadrian}, \hl{sin embargo al realizar modificaciones del c\'odigo se obtuvo un tiempo de ejecuci\'on mayor al esperado esto puede deberse a alg\'un error en la asignaci\'on del n\'umero de n\'ucleos o bien a la cantidad total procesada de n\'umeros primos.}
+\end{multicols}
+	\begin{table}[ht]
+		\centering
+		\caption{Descripción estadística}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			 Orden & Mín & $1$er. Q & Mediana & Media & $3$er Q & Máx \\
+			\hline
+			Original & $0.11$ & $0.12$ & $0.13$ & $0.13$ & $0.14$ & $0.20$ \\
+			\hline
+			Invertido& $0.12$ & $0.13$ & $0.13$ & $0.13$ & $0.14$ & $0.18$\\
+			\hline
+			Aleatorio & $0.12$ & $0.13$ & $0.13$ & $0.13$ & $0.14$ & $0.16$\\
+			\hline
+		\end{tabular}
+	\label{tb: Tabla1}
+	\end{table}
+	
+	\begin{multicols}{2}
 
-\clearpage
-\bibliography{practica3} %\bibliography dentro de los corchetes aparece el comando seccion de referencias  sin embargo para que aparezca tiene que aparecer la seccion \bibliographystyle para dar un estilo del tipo de letra o tipo de acomodo que llevara 
-\bibliographystyle{ieeetr}   %\da un estilo de acomodo dependiendo del comando dentro d corchetes
-\end{document} %indica finalizacion de lo señalado en el parentesis en este caso el documento
-
+\bibliography{T12}
+	\end{multicols}
+\bibliographystyle{ieeetr}
+	
+\end{document}
