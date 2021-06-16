@@ -1,0 +1,255 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[colorlinks=true, citecolor=blue, final]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:#1 png:\OutputFile}
+\AppendGraphicsExtensions{.gif}
+\usepackage{amssymb}
+\setlength{\arrayrulewidth}{1mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{2.5}
+\usepackage{soul}
+\usepackage{color}
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+\usepackage{url} % UTILIZA EL PAQUETE PARA QUE APAREZCA EL URL AUNQUE AUN NOSE SI DEBO ACTIVARLO TAMBIEN EN REFERENCIAS
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\usepackage{epsfig}
+\hypersetup{colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,}
+\usepackage{graphicx}
+\usepackage[sort&compress, numbers]{natbib}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{ragged2e}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,1,0.82}
+\definecolor{backcolour}{rgb}{1,1,0.97}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=0.4pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{xcolor}
+\newcommand{\celda}[1]{
+	\begin{minipage}{2cm}
+		\vspace{2mm}
+		#1
+		\vspace{2mm}
+	\end{minipage}
+}
+\definecolor{azul}{rgb}{0.36, 0.54, 0.66}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\author{José Adrian Garcia Fuentes}
+\begin{document}
+	\begin{figure}[H]
+		\raggedright
+		\includegraphics[scale=0.5]{uanl (1).png} \hfill \includegraphics[scale=0.275]{fime.png}
+	\end{figure}
+
+	\vspace{6mm}
+	
+	%ESTE CENTER ES EXCLUSIVO PARA EL TITULO DEL PAPER, AUTOR Y UNIVER.
+	\begin{center}
+		{\Large \textbf{Práctica 8: Modelo de urnas}}\\
+		\vspace{2mm}
+		\textit{ Alumno: José Adrian Garcia Fuentes}\\
+		\textit{Profesor: Satu Elisa Schaeffer}\\
+		\vspace{2.5mm}
+		\textit{Universidad Autónoma de Nuevo León\hl{,} Facultad de Ingeniería Mecánica y Eléctrica\hl{ }}\\
+		\vspace{1mm}
+		\textit {\today}
+		
+		
+	\end{center}
+	
+	
+	\begin{center}
+		\textcolor{azul}{\rule{150mm}{0.8mm}}
+	\end{center}
+
+	\vspace{4mm}
+	\begin{multicols}{2}
+		\section{Introducción} \label{Intro}
+		El modelo de la urna es uno de los elementos de mayor uso en la aplicación de probabilidades estadísticas ya que tiende a ser un concepto que permite la facilidad de comprender gráficamente las distintas formas en las cuales puede aplicarse dicho modelo, un modelo de urnas es aquel que trata de simular un contenedor con elementos para calcular la probabilidad de extraer un elemento de la jornada, alguna característica del elemento, por ejemplo, podemos tener una urna con bolas de un tamaño y bolas de otro donde se desea conocer cuál es la probabilidad de una bola de menor tamaño.
+En la práctica se simula un sistema en donde se abordan los fenómenos de coalescencia y fragmentación de partículas, donde las partículas se unen y se descomponen para formar cúmulos, estos fenómenos son de gran utilidad al realizar análisis en \hl{muchas} áreas como en física y química. Esto puede servir en la práctica de laboratorio como para lograr predecir qué cantidad de partículas quedaran atrapadas en un filtro de cierta apertura de poro, por ejemplo, supongamos que tenemos alguna solución y deseamos filtrar una determinada partícula una de las características más relevantes de dicha partícula es su tamaño se cuenta con una red que sólo captura las partículas de tamaño que se especifique, mediante el procedimiento solicitado por el uso del modelo de urnas aplicando el principio para este modelo generaríamos un número de enteros distribuido de tal manera que se agrupen al tamaño de los cúmulos originalmente iniciado.\hl{    }
+ 
+
+		\section{Objetivo} \label{antece}
+		Graficar el porcentaje que se logra filtrar en cada \hl{ite}ración.
+	
+	\section{Resultados}
+	 Para la simulación se toman en cuenta dos parámetros principales, que son el número de partículas $n =$ $16 k$, $32 k$, $64 k$, $128 k$ y el número de \hl{c\'umulos} $k=1000$ \cite{p8}. La metodología empleada se realizó a través de Rstudio \cite{RStudio} llevando a cabo los pasos señalados en la práctica 8: modelo de \hl{urnas} \cite{p8}, a partir del código en el repositorio de Schaeffer \cite{GITSCHAEFFER}, se \hl{realizaron} modificaciones, los resultados de la experimentación los podemos ver en la figura \ref{fig1} donde el eje vertical nos indica el porcentaje de las partículas que se logran filtrar y en el eje horizontal la iteración, correspondiendo los colores a la cantidad de cúmulos. 
+\vspace{1mm}	 
+	 
+\begin{lstlisting}
+vectorn <- c(16*k,32*k,64*k,128*k)
+
+  for (replica in 1:30) {
+    basefiltrados <- c()
+      for (n in vectorn) {
+\end{lstlisting}
+Los valores se agregan al vector n solicitado por el número de cúmulos y se realizan un total de 30 réplicas, se crea la variable filtrado para guardar los valores.
+\begin{lstlisting}
+filtrado <- c()
+\end{lstlisting}
+
+\begin{lstlisting}
+ h <- cumulos[cumulos > c]  
+      filtrado[paso] <- sum(h) / n
+    }
+    basefiltrados <- cbind(basefiltrados,filtrado)
+  }
+  colnames(basefiltrados) <- vectorn
+ \end{lstlisting} 
+Para mejorar la resolución de la imagen se agregó formato \texttt{.tiff} sustituyendo el formato \texttt{.png}, se añadió una leyenda en la parte inferior derecha para una mayor comprensión visual del gráfico.
+ \begin{lstlisting}
+  tiff(paste("p8_", replica, ".tiff", sep=""), width=12, height=12, units="cm", res=600, pointsize = 10) 
+  plot(basefiltrados[,1], type = "l", col= "red", ylim=c(min(basefiltrados), max(basefiltrados)),
+       main = paste("Replica", replica), xlab = "Iteraciones", ylab = "Porcentaje de filtraciones")
+  lines(basefiltrados[,2], type = "l", col= "blue")
+  lines(basefiltrados[,3], type = "l", col= "black")
+  lines(basefiltrados[,4], type = "l", col= "green")
+  legend("bottomright",legend = c("16k","32k", "64k", "128k"),fill=c("red","blue", "black", "green"))
+  dev.off()
+  print(replica)
+} 
+\end{lstlisting}
+
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.09]{p8_1.tiff.jpg} 
+				\caption{Porcentaje de filtración de los cúmulos en la réplica $1$.}
+				\label{fig1}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.09]{p8_30.tiff.jpg} 
+				\caption{Porcentaje de filtración de los cúmulos en la réplica $30$.}
+				\label{fig2}
+\end{figure}
+		\section{Conclusión}
+\hl{En la figura} \ref{fig1} \hl{se muestra que los c}ú\hl{mulos de mayor tama}ño ($64k$, $128k$) \hl{tienen un mayor porcentaje de filtraci}ó\hl{n que los de menor tama}ño ($16k$, $32k$). \hl{A diferencia de lo que se puede observar en la figura} \ref{fig2} \hl{el valor m}á\hl{s alto de la curva se encuentra en los c}ú\hl{mulos principales en este caso en la iteraci}ón $40$ de $64$ \hl{c\'umulos} (color negro) \hl{y a medida que avanza la iteraci\'on se observa que el filtrado avanza}, \hl{por tanto los} c\'umulos m\'as \hl{grandes se filtran con mayor facilidad pero tardan} m\'as \hl{en formarse que los} c\'umulos pequeños.
+
+\section{Reto 1}
+ Determina si algún intervalo de iteraciones en el que el filtrado alcance un óptimo. Realiza réplicas para determinar si el momento en el cual se alcanza el máximo tiene un comportamiento sistemático. Incluye visualizaciones para justificar las conclusiones.
+\begin{lstlisting}
+x1 <- c()
+  for (m in 1:ncol(basefiltrados)) {
+    x<-which.max(basefiltrados[,m])
+    x1<-c(x1, x)
+  }
+  x2 <- rbind(x2,x1)
+} 
+colnames(x2) <- vectorn
+rownames(x2) <- seq(1:replica)
+\end{lstlisting}
+\hl{Mediante which.max se obtienen los valores m}ás \hl{altos de las 50 iteraci}ó\hl{nes agrupadas en filas para los 4 diferentes tama}ñ\hl{os de n }(número de partículas) \hl{los resultados obtenidos se muestran en las figuras} \ref{fig3}, \ref{fig4}, \ref{fig5}, \ref{fig6} \hl{obteniendo resultados variables}.
+
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{16k.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $16k$.}
+				\label{fig3}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{32.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $32k$.}
+				\label{fig4}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{64k.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $64k$.}
+				\label{fig5}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{128k.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $128k$.}
+				\label{fig6}
+\end{figure}
+
+
+\section{Reto 2}
+Determina cómo los resultados de la tarea y del primer reto dependen del valor de C. ¿Qué todo cambia y cómo si C ya no se asigna como la mediana inicial sino a un valor menor o mayor?
+\begin{lstlisting}
+for (q in 1:2) {
+\end{lstlisting}
+\hl{Primero se genera un ciclo for para la variable} \textit{q} \hl{cuando} \textit{q} \hl{sea igual a 1 la variable} \textit{c} \hl{tomara el valor y se le restara la desviaci}ón estándar \hl{en otro caso se sumara, provocando la modificaci}ón de \textit{c}.
+\begin{lstlisting}
+if (q == 1) {
+      c <- median(cumulos) - sd(cumulos) # tamanio critico de cumulos
+    } else {c <- median(cumulos) + sd(cumulos)}
+\end{lstlisting}
+\hl{En las figuras} \ref{fig7}, \ref{fig8} \hl{se muestran los gr}á\hl{ficos con valores mayores y menores que} \textit{c} \hl{respectivamente, comparando con la tarea base y el primer reto los valores de filtraci}ó\hl{n son m}á\hl{s uniformes salvo la excepci}ó\hl{n del menor n}ú\hl{mero de c}ú\hl{mulos $16k$ para el caso de} \textit{c} menor.
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{mayor.jpeg} 
+				\caption{Gráfico del porcentaje filtrado por iteracción \textit{c} mayor.}
+				\label{fig7}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{menor.jpeg} 
+				\caption{Gráfico del porcentaje filtrado por iteracción \textit{c} menor.}
+				\label{fig8}
+\end{figure}
+\hl{Para el caso de los mejores filtrados y llevando a cabo los pasos del reto 1 se observan en las figuras} \ref{fig9}, \ref{fig10} \hl{que si} \textit{c} \hl{es menor el porcentaje de filtraci}ó\hl{n ser}á \hl{muy bajo sin embargo si} \textit{c} \hl{es mayor el porcentaje de filtraci}ó\hl{n ser}á \hl{variable.}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{menor16.jpeg} 
+				\caption{Gráfico de $16k$ con un valor de \textit{c} menor.}
+				\label{fig9}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{mayor16.jpeg} 
+				\caption{Gráfico de $16k$ con un valor de \textit{c} mayor.}
+				\label{fig10}
+\end{figure}
+
+
+
+
+
+\bibliography{T12}
+	\end{multicols}
+\bibliographystyle{ieeetr}
+	
+\end{document}
