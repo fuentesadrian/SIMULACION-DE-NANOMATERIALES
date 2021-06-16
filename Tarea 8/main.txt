@@ -1,16 +1,27 @@
-\documentclass[a4paper]{article}
-\usepackage[spanish,es-tabla]{babel}  %babel es el paquete de idiomas y antes de eso va el o los idiomas que se reuqieren emplear
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{subcaption}
 \usepackage[colorlinks=true, citecolor=blue, final]{hyperref}
 \usepackage[table]{xcolor}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:#1 png:\OutputFile}
+\AppendGraphicsExtensions{.gif}
 \usepackage{amssymb}
 \setlength{\arrayrulewidth}{1mm}
 \setlength{\tabcolsep}{18pt}
 \renewcommand{\arraystretch}{2.5}
-
+\usepackage{soul}
+\usepackage{color}
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
 \usepackage{url} % UTILIZA EL PAQUETE PARA QUE APAREZCA EL URL AUNQUE AUN NOSE SI DEBO ACTIVARLO TAMBIEN EN REFERENCIAS
 \hypersetup{
     colorlinks=true,
@@ -23,7 +34,6 @@
     linkcolor=blue,
     filecolor=blue,      
     urlcolor=blue,}
-
 \usepackage{graphicx}
 \usepackage[sort&compress, numbers]{natbib}
 \usepackage{xcolor}
@@ -45,510 +55,201 @@
     captionpos=b,                    
     keepspaces=true,                 
     numbers=left,                    
-    numbersep=5pt,                  
+    numbersep=0.4pt,                  
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
     tabsize=2
 }
 \lstset{style=mystyle}
-\usepackage{media9} % for \includemedia AVOID as about to expire
-% \usepackage{pdfpc-commands} % for \inlineMovie OK BUT needs own .sty file see below
-% \usepackage{xmpmulti} % For \multiinclude OK BUT uses slides in a sequence
-\usepackage{multimedia}
-\usepackage{animate} % for \animategraphics
-\usepackage{eso-pic} % imagen de fondo
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage{xcolor}
+\newcommand{\celda}[1]{
+	\begin{minipage}{2cm}
+		\vspace{2mm}
+		#1
+		\vspace{2mm}
+	\end{minipage}
+}
+\definecolor{azul}{rgb}{0.36, 0.54, 0.66}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\author{José Adrian Garcia fUENTES}
+\begin{document}
+	\begin{figure}[H]
+		\raggedright
+		\includegraphics[scale=0.5]{uanl (1).png} \hfill \includegraphics[scale=0.275]{fime.png}
+	\end{figure}
 
-\begin{document}  %se utiliza para comenzar lo señalado en el parentesis
-\begin{center} %begin para comenzar  agregamos centrar para poner en medio
-\large \bf Práctica Nº 8   %\large aumenta ligeramente el texto posterior o alarga 
-\\ %\\ Indica brincar espacio. \bf indicara subrayar en negritas las letras despues antes de el termino checar que este en minusculas aveces no entra no se porque pasa un espacio antes y despues de agregar
-Modelo de urnas
-\end{center} %end terminacion de lo señalado en corchetes en este caso el centrado
-\hbox {\textbf{Alumno:}José Adrián García Fuentes}
- %hfill genera un espacio horizontal para expandirse a lo largo del documento
-\hbox {\textbf{Profesor:} Satu Elisa Schaeffer}   %para que entre el textbf checar que este todo en minusculas
-\hbox {\textbf{Fecha:} 20/abril/2021}        %\today agrega la fecha en formato de mes dia, año en ingles agregar un usepackage al principio entre llaves el idioma a emplear y entre corchetes babel que es el paquete de idiomas
+	\vspace{6mm}
+	
+	%ESTE CENTER ES EXCLUSIVO PARA EL TITULO DEL PAPER, AUTOR Y UNIVER.
+	\begin{center}
+		{\Large \textbf{Práctica 8: Modelo de urnas}}\\
+		\vspace{2mm}
+		\textit{ Alumno: José Adrian Garcia Fuentes}\\
+		\textit{Profesor: Satu Elisa Schaeffer}\\
+		\vspace{2.5mm}
+		\textit{Universidad Autónoma de Nuevo León, Facultad de Ingeniería Mecánica y Eléctrica}\\
+		\vspace{1mm}
+		\textit {\today}
+		
+		
+	\end{center}
+	
+	
+	\begin{center}
+		\textcolor{azul}{\rule{150mm}{0.8mm}}
+	\end{center}
 
-\section{Introducción}
-\justify El modelo de la urna es uno de los elementos de mayor uso en la aplicación de probabilidades estadísticas ya que tiende a ser un concepto que permite la facilidad de comprender gráficamente las distintas formas en las cuales puede aplicarse dicho modelo, un modelo de urnas es aquel que trata de simular un contenedor con elementos para calcular la probabilidad de extraer un elemento de la jornada, alguna característica del elemento, por ejemplo, podemos tener una urna con bolas de un tamaño y bolas de otro donde se desea conocer cuál es la probabilidad de una bola de menor tamaño.
-En la práctica se simula un sistema en donde se abordan los fenómenos de coalescencia y fragmentación de partículas, donde las partículas se unen y se descomponen para formar cúmulos, estos fenómenos son de gran utilidad al realizar análisis en munchas áreas como en física y química. Esto puede servir en la práctica de laboratorio como para lograr predecir qué cantidad de partículas quedaran atrapadas en un filtro de cierta apertura de poro, por ejemplo, supongamos que tenemos alguna solución y deseamos filtrado una determinada partícula una de las características más relevantes de dicha partícula es su tamaño se cuenta con una red que sólo captura las partículas de tamaño que se especifique, mediante el procedimiento solicitado por el uso del modelo de urnas aplicando el principio para este modelo generaríamos un número de enteros distribuido de tal manera que se agrupen al tamaño de los cúmulos originalmente iniciado considerando estas condiciones se procederá a realizar la simulación del sistema. 
+	\vspace{4mm}
+	\begin{multicols}{2}
+		\section{Introducción} \label{Intro}
+		El modelo de la urna es uno de los elementos de mayor uso en la aplicación de probabilidades estadísticas ya que tiende a ser un concepto que permite la facilidad de comprender gráficamente las distintas formas en las cuales puede aplicarse dicho modelo, un modelo de urnas es aquel que trata de simular un contenedor con elementos para calcular la probabilidad de extraer un elemento de la jornada, alguna característica del elemento, por ejemplo, podemos tener una urna con bolas de un tamaño y bolas de otro donde se desea conocer cuál es la probabilidad de una bola de menor tamaño.
+En la práctica se simula un sistema en donde se abordan los fenómenos de coalescencia y fragmentación de partículas, donde las partículas se unen y se descomponen para formar cúmulos, estos fenómenos son de gran utilidad al realizar análisis en muchas áreas como en física y química. Esto puede servir en la práctica de laboratorio como para lograr predecir qué cantidad de partículas quedaran atrapadas en un filtro de cierta apertura de poro, por ejemplo, supongamos que tenemos alguna solución y deseamos filtrar una determinada partícula una de las características más relevantes de dicha partícula es su tamaño se cuenta con una red que sólo captura las partículas de tamaño que se especifique, mediante el procedimiento solicitado por el uso del modelo de urnas aplicando el principio para este modelo generaríamos un número de enteros distribuido de tal manera que se agrupen al tamaño de los cúmulos originalmente iniciado.
+ 
 
-\section{Objetivo}
-\begin{itemize}
-\item Graficar el porcentaje que se logra filtrar en cada interación.
-\end{itemize}
-\section{Resultados}
-\justify Para la simulación se toman en cuenta dos parámetros principales, que son el número de partículas $n \in \{16k, 32k, 64k, 128k\}$ y el número de cumulos $k=1000$ \cite{p8}. La metodología empleada se realizó a través de Rstudio \cite{RStudio} llevando a cabo los pasos señalados en la práctica 8: modelo de urna \cite{p8}, a partir del código en el repositorio de Schaeffer \cite{GITSCHAEFFER}, se realizarón modificaciones, los resultados de la experimentación los podemos ver en la figura \ref{Fig.1} donde el eje vertical nos indica el porcentaje de las partículas que se logran filtrar y en el eje horizontal la iteración. 
+		\section{Objetivo} \label{antece}
+		Graficar el porcentaje que se logra filtrar en cada iteración.
+	
+	\section{Resultados}
+	 Para la simulación se toman en cuenta dos parámetros principales, que son el número de partículas $n =$ $16 k$, $32 k$, $64 k$, $128 k$ y el número de cúmulos $k=1000$ \cite{p8}. La metodología empleada se realizó a través de Rstudio \cite{RStudio} llevando a cabo los pasos señalados en la práctica 8: modelo de urnas \cite{p8}, a partir del código en el repositorio de Schaeffer \cite{GITSCHAEFFER}, se realizaron modificaciones, los resultados de la experimentación los podemos ver en la figura \ref{fig1} donde el eje vertical nos indica el porcentaje de las partículas que se logran filtrar y en el eje horizontal la iteración, correspondiendo los colores a la cantidad de cúmulos. 
+\vspace{1mm}	 
+	 
 \begin{lstlisting}
-library(testit) # para pruebas, recuerda instalar antes de usar
-
-k <- 1000
 vectorn <- c(16*k,32*k,64*k,128*k)
 
-for (replica in 1:30) {
-  basefiltrados <- c()
-  for (n in vectorn) {
-  
-    originales <- rnorm(k)
-    cumulos <- originales - min(originales) + 1
-    cumulos <- round(n * cumulos / sum(cumulos))
-    assert(min(cumulos) > 0)
-    diferencia <- n - sum(cumulos)
-    if (diferencia > 0) {
-      for (i in 1:diferencia) {
-        p <- sample(1:k, 1)
-        cumulos[p] <- cumulos[p] + 1
-      }
-    } else if (diferencia < 0) {
-      for (i in 1:-diferencia) {
-        p <- sample(1:k, 1)
-        if (cumulos[p] > 1) {
-          cumulos[p] <- cumulos[p] - 1
-        }
-      }
-    }
-    
-    assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-    assert(sum(cumulos) == n)
-    c <- median(cumulos) # tamanio critico de cumulos
-    d <- sd(cumulos) / 4 # factor arbitrario para suavizar la curva
-    
-    
-    rotura <- function(x) {
-      return (1 / (1 + exp((c - x) / d)))
-    }
-    
-    
-    union <- function(x) {
-      return (exp(-x / c))
-    }
-    
-    
-    romperse <- function(tam, cuantos) {
-      romper <- round(rotura(tam) * cuantos) # independientes
-      resultado <- rep(tam, cuantos - romper) # los demas
-      if (romper > 0) {
-        for (cumulo in 1:romper) { # agregar las rotas
-          t <- 1
-          if (tam > 2) { # sample no jala con un solo valor
-            t <- sample(1:(tam-1), 1)
-          }
-          resultado <- c(resultado, t, tam - t)
-        }
-      }
-      assert(sum(resultado) == tam * cuantos) # no hubo perdidas
-      return(resultado)
-    }
-    
-    
-    unirse <- function(tam, cuantos) {
-      unir <- round(union(tam) * cuantos) # independientes
-      if (unir > 0) {
-        division <- c(rep(-tam, unir), rep(tam, cuantos - unir))
-        assert(sum(abs(division)) == tam * cuantos)
-        return(division)
-      } else {
-        return(rep(tam, cuantos))
-      }
-    }
-    
-    
-    freq <- as.data.frame(table(cumulos))
-    names(freq) <- c("tam", "num")
-    freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-    duracion <- 50
-    digitos <- floor(log(duracion, 10)) + 1
-    filtrado <- c()
-    for (paso in 1:duracion) {
-      assert(sum(cumulos) == n)
-      cumulos <- integer()
-      for (i in 1:dim(freq)[1]) { # fase de rotura
-        urna <- freq[i,]
-        if (urna$tam > 1) { # no tiene caso romper si no se puede
-          cumulos <- c(cumulos, romperse(urna$tam, urna$num))
-        } else {
-          cumulos <- c(cumulos, rep(1, urna$num))
-        }
-      }
-      assert(sum(cumulos) == n)
-      assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-      freq <- as.data.frame(table(cumulos)) # actualizar urnas
-      names(freq) <- c("tam", "num")
-      freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-      assert(sum(freq$num * freq$tam) == n)
-      cumulos <- integer()
-      for (i in 1:dim(freq)[1]) { # fase de union
-        urna <- freq[i,]
-        cumulos <- c(cumulos, unirse(urna$tam, urna$num))
-      }
-      assert(sum(abs(cumulos)) == n)
-      assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-      juntarse <- -cumulos[cumulos < 0]
-      cumulos <- cumulos[cumulos > 0]
-      assert(sum(cumulos) + sum(juntarse) == n)
-      nt <- length(juntarse)
-      if (nt > 0) {
-        if (nt > 1) {
-          juntarse <- sample(juntarse)
-          for (i in 1:floor(nt / 2) ) {
-            cumulos <- c(cumulos, juntarse[2*i-1] + juntarse[2*i])
-          }
-        }
-        if (nt %% 2 == 1) {
-          cumulos <- c(cumulos, juntarse[nt])
-        }
-      }
-      assert(sum(cumulos) == n)
-      freq <- as.data.frame(table(cumulos))
-      names(freq) <- c("tam", "num")
-      freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-      assert(sum(freq$num * freq$tam) == n)
-      tl <- paste(paso, "", sep="")
-      while (nchar(tl) < digitos) {
-        tl <- paste("0", tl, sep="")
-      }
-      png(paste("p8_ct", tl, ".png", sep=""), width=300, height=300)
-      tope <- 50 * ceiling(max(cumulos) / 50)
-      hist(cumulos, breaks=seq(0, tope, 50), 
-           main=paste("Paso", paso, "con ambos fen\u{00f3}menos"), freq=FALSE,
-           ylim=c(0, 0.05), xlab="Tama\u{00f1}o", ylab="Frecuencia relativa")
-      graphics.off()
-      h <- cumulos[cumulos > c]  
+  for (replica in 1:30) {
+    basefiltrados <- c()
+      for (n in vectorn) {
+\end{lstlisting}
+Los valores se agregan al vector n solicitado por el número de cúmulos y se realizan un total de 30 réplicas, se crea la variable filtrado para guardar los valores.
+\begin{lstlisting}
+filtrado <- c()
+\end{lstlisting}
+
+\begin{lstlisting}
+ h <- cumulos[cumulos > c]  
       filtrado[paso] <- sum(h) / n
     }
     basefiltrados <- cbind(basefiltrados,filtrado)
   }
-  
   colnames(basefiltrados) <- vectorn
-  
-png(paste("p8_", replica, ".png", sep=""), width=300, height=300) 
- plot(basefiltrados[,1], type = "l", col= "red", ylim=c(min(basefiltrados), max(basefiltrados)),
+ \end{lstlisting} 
+Para mejorar la resolución de la imagen se agregó formato \texttt{.tiff} sustituyendo el formato \texttt{.png}, se añadió una leyenda en la parte inferior derecha para una mayor comprensión visual del gráfico.
+ \begin{lstlisting}
+  tiff(paste("p8_", replica, ".tiff", sep=""), width=12, height=12, units="cm", res=600, pointsize = 10) 
+  plot(basefiltrados[,1], type = "l", col= "red", ylim=c(min(basefiltrados), max(basefiltrados)),
        main = paste("Replica", replica), xlab = "Iteraciones", ylab = "Porcentaje de filtraciones")
   lines(basefiltrados[,2], type = "l", col= "blue")
   lines(basefiltrados[,3], type = "l", col= "black")
   lines(basefiltrados[,4], type = "l", col= "green")
+  legend("bottomright",legend = c("16k","32k", "64k", "128k"),fill=c("red","blue", "black", "green"))
+  dev.off()
   print(replica)
 } 
 \end{lstlisting}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 				\centering
-				\includegraphics{p8.jpeg} 
-				\caption{Grafico del porcentaje filtrado en cada interación.}
+				\includegraphics[scale=0.09]{p8_1.tiff.jpg} 
+				\caption{Porcentaje de filtración de los cúmulos en la réplica $1$.}
+				\label{fig1}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.09]{p8_30.tiff.jpg} 
+				\caption{Porcentaje de filtración de los cúmulos en la réplica $30$.}
 				\label{fig2}
 \end{figure}
+		\section{Conclusión}
+En la figura \ref{fig1} se muestra que los cúmulos de mayor tamaño ($64k$, $128k$) tienen un mayor porcentaje de filtración que los de menor tamaño ($16k$, $32k$). A diferencia de lo que se puede observar en la figura \ref{fig2} el valor más alto de la curva se encuentra en los cúmulos principales en este caso en la iteración $40$ de $64$ cúmulos (color negro) y a medida que avanza la iteración se observa que el filtrado avanza, por tanto los cúmulos más grandes se filtran con mayor facilidad pero tardan más en formarse que los cúmulos pequeños.
 
 \section{Reto 1}
  Determina si algún intervalo de iteraciones en el que el filtrado alcance un óptimo. Realiza réplicas para determinar si el momento en el cual se alcanza el máximo tiene un comportamiento sistemático. Incluye visualizaciones para justificar las conclusiones.
- \begin{lstlisting}
-library(testit) # para pruebas, recuerda instalar antes de usar
-
-k <- 1000
-vectorn <- c(16*k,32*k,64*k,128*k)
-
-for (replica in 1:30) {
-  basefiltrados <- c()
-  for (n in vectorn) {
-    
-    originales <- rnorm(k)
-    cumulos <- originales - min(originales) + 1
-    cumulos <- round(n * cumulos / sum(cumulos))
-    assert(min(cumulos) > 0)
-    diferencia <- n - sum(cumulos)
-    if (diferencia > 0) {
-      for (i in 1:diferencia) {
-        p <- sample(1:k, 1)
-        cumulos[p] <- cumulos[p] + 1
-      }
-    } else if (diferencia < 0) {
-      for (i in 1:-diferencia) {
-        p <- sample(1:k, 1)
-        if (cumulos[p] > 1) {
-          cumulos[p] <- cumulos[p] - 1
-        }
-      }
-    }
-    
-    assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-    assert(sum(cumulos) == n)
-    c <- median(cumulos) -  sd(cumulos)# tamanio critico de cumulos
-    d <- sd(cumulos) / 4 # factor arbitrario para suavizar la curva
-    
-    
-    rotura <- function(x) {
-      return (1 / (1 + exp((c - x) / d)))
-    }
-    
-    
-    union <- function(x) {
-      return (exp(-x / c))
-    }
-    
-    
-    romperse <- function(tam, cuantos) {
-      romper <- round(rotura(tam) * cuantos) # independientes
-      resultado <- rep(tam, cuantos - romper) # los demas
-      if (romper > 0) {
-        for (cumulo in 1:romper) { # agregar las rotas
-          t <- 1
-          if (tam > 2) { # sample no jala con un solo valor
-            t <- sample(1:(tam-1), 1)
-          }
-          resultado <- c(resultado, t, tam - t)
-        }
-      }
-      assert(sum(resultado) == tam * cuantos) # no hubo perdidas
-      return(resultado)
-    }
-    
-    
-    unirse <- function(tam, cuantos) {
-      unir <- round(union(tam) * cuantos) # independientes
-      if (unir > 0) {
-        division <- c(rep(-tam, unir), rep(tam, cuantos - unir))
-        assert(sum(abs(division)) == tam * cuantos)
-        return(division)
-      } else {
-        return(rep(tam, cuantos))
-      }
-    }
-    
-    
-    freq <- as.data.frame(table(cumulos))
-    names(freq) <- c("tam", "num")
-    freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-    duracion <- 50
-    digitos <- floor(log(duracion, 10)) + 1
-    filtrado <- c()
-    for (paso in 1:duracion) {
-      assert(sum(cumulos) == n)
-      cumulos <- integer()
-      for (i in 1:dim(freq)[1]) { # fase de rotura
-        urna <- freq[i,]
-        if (urna$tam > 1) { # no tiene caso romper si no se puede
-          cumulos <- c(cumulos, romperse(urna$tam, urna$num))
-        } else {
-          cumulos <- c(cumulos, rep(1, urna$num))
-        }
-      }
-      assert(sum(cumulos) == n)
-      assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-      freq <- as.data.frame(table(cumulos)) # actualizar urnas
-      names(freq) <- c("tam", "num")
-      freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-      assert(sum(freq$num * freq$tam) == n)
-      cumulos <- integer()
-      for (i in 1:dim(freq)[1]) { # fase de union
-        urna <- freq[i,]
-        cumulos <- c(cumulos, unirse(urna$tam, urna$num))
-      }
-      assert(sum(abs(cumulos)) == n)
-      assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-      juntarse <- -cumulos[cumulos < 0]
-      cumulos <- cumulos[cumulos > 0]
-      assert(sum(cumulos) + sum(juntarse) == n)
-      nt <- length(juntarse)
-      if (nt > 0) {
-        if (nt > 1) {
-          juntarse <- sample(juntarse)
-          for (i in 1:floor(nt / 2) ) {
-            cumulos <- c(cumulos, juntarse[2*i-1] + juntarse[2*i])
-          }
-        }
-        if (nt %% 2 == 1) {
-          cumulos <- c(cumulos, juntarse[nt])
-        }
-      }
-      assert(sum(cumulos) == n)
-      freq <- as.data.frame(table(cumulos))
-      names(freq) <- c("tam", "num")
-      freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-      assert(sum(freq$num * freq$tam) == n)
-      tl <- paste(paso, "", sep="")
-      while (nchar(tl) < digitos) {
-        tl <- paste("0", tl, sep="")
-      }
-      png(paste("p8_ct", tl, ".png", sep=""), width=300, height=300)
-      tope <- 50 * ceiling(max(cumulos) / 50)
-      hist(cumulos, breaks=seq(0, tope, 50), 
-           main=paste("Paso", paso, "con ambos fen\u{00f3}menos"), freq=FALSE,
-           ylim=c(0, 0.05), xlab="Tama\u{00f1}o", ylab="Frecuencia relativa")
-      graphics.off()
-      h <- cumulos[cumulos > c]  
-      filtrado[paso] <- sum(h) / n
-    }
-    basefiltrados <- cbind(basefiltrados,filtrado)
+\begin{lstlisting}
+x1 <- c()
+  for (m in 1:ncol(basefiltrados)) {
+    x<-which.max(basefiltrados[,m])
+    x1<-c(x1, x)
   }
-  
-  colnames(basefiltrados) <- vectorn
-  
-  png(paste("p8_", replica, ".png", sep=""), width=300, height=300) 
-  plot(basefiltrados[,1], type = "l", col= "red", ylim=c(min(basefiltrados), max(basefiltrados)),
-       main = paste("Replica", replica), xlab = "Iteraciones", ylab = "Porcentaje de filtraciones")
-  lines(basefiltrados[,2], type = "l", col= "blue")
-  lines(basefiltrados[,3], type = "l", col= "black")
-  lines(basefiltrados[,4], type = "l", col= "green")
-  print(replica)
+  x2 <- rbind(x2,x1)
 } 
+colnames(x2) <- vectorn
+rownames(x2) <- seq(1:replica)
 \end{lstlisting}
+Mediante which.max se obtienen los valores más altos de las 50 iteraciones agrupadas en filas para los 4 diferentes tamaños de n (número de partículas) los resultados obtenidos se muestran en las figuras \ref{fig3}, \ref{fig4}, \ref{fig5}, \ref{fig6} obteniendo resultados variables.
+
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{16k.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $16k$.}
+				\label{fig3}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{32.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $32k$.}
+				\label{fig4}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{64k.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $64k$.}
+				\label{fig5}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.25]{128k.jpeg} 
+				\caption{Gráfico de replicas filtrando los mejores valores de $128k$.}
+				\label{fig6}
+\end{figure}
+
+
 \section{Reto 2}
 Determina cómo los resultados de la tarea y del primer reto dependen del valor de C. ¿Qué todo cambia y cómo si C ya no se asigna como la mediana inicial sino a un valor menor o mayor?
-
 \begin{lstlisting}
-library(testit) # para pruebas, recuerda instalar antes de usar
-
-k <- 1000
-vectorn <- c(16*k,32*k,64*k,128*k)
-
-for (replica in 1:30) {
-  basefiltrados <- c()
-  for (n in vectorn) {
-    
-    originales <- rnorm(k)
-    cumulos <- originales - min(originales) + 1
-    cumulos <- round(n * cumulos / sum(cumulos))
-    assert(min(cumulos) > 0)
-    diferencia <- n - sum(cumulos)
-    if (diferencia > 0) {
-      for (i in 1:diferencia) {
-        p <- sample(1:k, 1)
-        cumulos[p] <- cumulos[p] + 1
-      }
-    } else if (diferencia < 0) {
-      for (i in 1:-diferencia) {
-        p <- sample(1:k, 1)
-        if (cumulos[p] > 1) {
-          cumulos[p] <- cumulos[p] - 1
-        }
-      }
-    }
-    
-    assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-    assert(sum(cumulos) == n)
-    c <- median(cumulos) +  sd(cumulos)# tamanio critico de cumulos
-    d <- sd(cumulos) / 4 # factor arbitrario para suavizar la curva
-    
-    
-    rotura <- function(x) {
-      return (1 / (1 + exp((c - x) / d)))
-    }
-    
-    
-    union <- function(x) {
-      return (exp(-x / c))
-    }
-    
-    
-    romperse <- function(tam, cuantos) {
-      romper <- round(rotura(tam) * cuantos) # independientes
-      resultado <- rep(tam, cuantos - romper) # los demas
-      if (romper > 0) {
-        for (cumulo in 1:romper) { # agregar las rotas
-          t <- 1
-          if (tam > 2) { # sample no jala con un solo valor
-            t <- sample(1:(tam-1), 1)
-          }
-          resultado <- c(resultado, t, tam - t)
-        }
-      }
-      assert(sum(resultado) == tam * cuantos) # no hubo perdidas
-      return(resultado)
-    }
-    
-    
-    unirse <- function(tam, cuantos) {
-      unir <- round(union(tam) * cuantos) # independientes
-      if (unir > 0) {
-        division <- c(rep(-tam, unir), rep(tam, cuantos - unir))
-        assert(sum(abs(division)) == tam * cuantos)
-        return(division)
-      } else {
-        return(rep(tam, cuantos))
-      }
-    }
-    
-    
-    freq <- as.data.frame(table(cumulos))
-    names(freq) <- c("tam", "num")
-    freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-    duracion <- 50
-    digitos <- floor(log(duracion, 10)) + 1
-    filtrado <- c()
-    for (paso in 1:duracion) {
-      assert(sum(cumulos) == n)
-      cumulos <- integer()
-      for (i in 1:dim(freq)[1]) { # fase de rotura
-        urna <- freq[i,]
-        if (urna$tam > 1) { # no tiene caso romper si no se puede
-          cumulos <- c(cumulos, romperse(urna$tam, urna$num))
-        } else {
-          cumulos <- c(cumulos, rep(1, urna$num))
-        }
-      }
-      assert(sum(cumulos) == n)
-      assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-      freq <- as.data.frame(table(cumulos)) # actualizar urnas
-      names(freq) <- c("tam", "num")
-      freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-      assert(sum(freq$num * freq$tam) == n)
-      cumulos <- integer()
-      for (i in 1:dim(freq)[1]) { # fase de union
-        urna <- freq[i,]
-        cumulos <- c(cumulos, unirse(urna$tam, urna$num))
-      }
-      assert(sum(abs(cumulos)) == n)
-      assert(length(cumulos[cumulos == 0]) == 0) # que no haya vacios
-      juntarse <- -cumulos[cumulos < 0]
-      cumulos <- cumulos[cumulos > 0]
-      assert(sum(cumulos) + sum(juntarse) == n)
-      nt <- length(juntarse)
-      if (nt > 0) {
-        if (nt > 1) {
-          juntarse <- sample(juntarse)
-          for (i in 1:floor(nt / 2) ) {
-            cumulos <- c(cumulos, juntarse[2*i-1] + juntarse[2*i])
-          }
-        }
-        if (nt %% 2 == 1) {
-          cumulos <- c(cumulos, juntarse[nt])
-        }
-      }
-      assert(sum(cumulos) == n)
-      freq <- as.data.frame(table(cumulos))
-      names(freq) <- c("tam", "num")
-      freq$tam <- as.numeric(levels(freq$tam))[freq$tam]
-      assert(sum(freq$num * freq$tam) == n)
-      tl <- paste(paso, "", sep="")
-      while (nchar(tl) < digitos) {
-        tl <- paste("0", tl, sep="")
-      }
-      png(paste("p8_ct", tl, ".png", sep=""), width=300, height=300)
-      tope <- 50 * ceiling(max(cumulos) / 50)
-      hist(cumulos, breaks=seq(0, tope, 50), 
-           main=paste("Paso", paso, "con ambos fen\u{00f3}menos"), freq=FALSE,
-           ylim=c(0, 0.05), xlab="Tama\u{00f1}o", ylab="Frecuencia relativa")
-      graphics.off()
-      h <- cumulos[cumulos > c]  
-      filtrado[paso] <- sum(h) / n
-    }
-    basefiltrados <- cbind(basefiltrados,filtrado)
-  }
-  
-  colnames(basefiltrados) <- vectorn
-  
-  png(paste("p8_", replica, ".png", sep=""), width=300, height=300) 
-  plot(basefiltrados[,1], type = "l", col= "red", ylim=c(min(basefiltrados), max(basefiltrados)),
-       main = paste("Replica", replica), xlab = "Iteraciones", ylab = "Porcentaje de filtraciones")
-  lines(basefiltrados[,2], type = "l", col= "blue")
-  lines(basefiltrados[,3], type = "l", col= "black")
-  lines(basefiltrados[,4], type = "l", col= "green")
-  print(replica)
-} 
+for (q in 1:2) {
 \end{lstlisting}
-\section{Conclusión}
-Como se observa en la figura \ref{Fig.1} el valor más alto de la curva se encuentra en los cúmulos principales y a medida que avanza la interación se observa que el filtrado avanza por tanto los cúmulos más grandes se filtran con mayor facilidad pero tardar en formarse que los cúmulos pequeños.
-\newpage
-\bibliography{t8} %\bibliography dentro de los corchetes aparece el comando seccion de referencias  sin embargo para que aparezca tiene que aparecer la seccion \bibliographystyle para dar un estilo del tipo de letra o tipo de acomodo que llevara 
-\bibliographystyle{ieeetr}   %\da un estilo de acomodo dependiendo del comando dentro d corchetes
-\end{document} %indica finalizacion de lo señalado en el parentesis en este caso el documento
+Primero se genera un ciclo for para la variable \textit{q} cuando \textit{q} sea igual a 1 la variable \textit{c} tomara el valor y se le restara la desviación estándar en otro caso se sumara, provocando la modificación de \textit{c}.
+\begin{lstlisting}
+if (q == 1) {
+      c <- median(cumulos) - sd(cumulos) # tamanio critico de cumulos
+    } else {c <- median(cumulos) + sd(cumulos)}
+\end{lstlisting}
+En las figuras \ref{fig7}, \ref{fig8} se muestran los gráficos con valores mayores y menores que \textit{c} respectivamente, comparando con la tarea base y el primer reto los valores de filtración son más uniformes salvo la excepción del menor número de cúmulos $16k$ para el caso de \textit{c} menor.
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{mayor.jpeg} 
+				\caption{Gráfico del porcentaje filtrado por iteracción \textit{c} mayor.}
+				\label{fig7}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{menor.jpeg} 
+				\caption{Gráfico del porcentaje filtrado por iteracción \textit{c} menor.}
+				\label{fig8}
+\end{figure}
+Para el caso de los mejores filtrados y llevando a cabo los pasos del reto 1 se observan en las figuras \ref{fig9}, \ref{fig10} que si \textit{c} es menor el porcentaje de filtración será muy bajo sin embargo si \textit{c} es mayor el porcentaje de filtración será variable.
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{menor16.jpeg} 
+				\caption{Gráfico de $16k$ con un valor de \textit{c} menor.}
+				\label{fig9}
+\end{figure}
+\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.33]{mayor16.jpeg} 
+				\caption{Gráfico de $16k$ con un valor de \textit{c} mayor.}
+				\label{fig10}
+\end{figure}
+
+
+
+
+
+\bibliography{T12}
+	\end{multicols}
+\bibliographystyle{ieeetr}
+	
+\end{document}
